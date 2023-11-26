@@ -16,7 +16,7 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         private readonly IProductDal _productDal;
-        ProductManager(IProductDal productDal)
+       public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
         }
@@ -47,7 +47,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetProductList()
         {
-           return new SuccessDataResult<List<Product>>(_productDal.GetAll());
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), "okey");
         }
 
         public IResult Update(Product product)
@@ -63,3 +63,4 @@ namespace Business.Concrete
         }
     }
 }
+

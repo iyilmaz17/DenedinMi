@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public float StarCount { get; set; }
         public string CommentDescription { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
         public int UserId { get; set; }
         public User Users { get; set; }

@@ -18,7 +18,7 @@ namespace Business.Concrete
     public class CommentManager : ICommentService
     {
         private readonly ICommentDal _commentDal;
-        CommentManager(ICommentDal commentService)
+        public CommentManager(ICommentDal commentService)
         {
             _commentDal = commentService;
         }
@@ -42,10 +42,11 @@ namespace Business.Concrete
 
         public IDataResult<Comment> GetById(int commentId)
         {
-            return new SuccessDataResult<Comment>(_commentDal.Get(c => c.Id == commentId));
+                return new SuccessDataResult<Comment>(_commentDal.Get(c => c.Id == commentId));
+           
         }
 
-        public IDataResult<List<Comment>> GetProductList()
+        public IDataResult<List<Comment>> GetCommentList()
         {
             return new SuccessDataResult<List<Comment>>(_commentDal.GetAll());
         }

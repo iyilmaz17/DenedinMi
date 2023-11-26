@@ -14,9 +14,9 @@ namespace Entities.Concrete
         public float MaxPrice { get; set; }
         public string Description { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        //public Category Category { get; set; }
 
-        public List<Image> Images { get; set; }
+        //public List<Image> Images { get; set; }
 
     }
 }

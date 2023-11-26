@@ -21,10 +21,5 @@ namespace Business.ValidationRules.FluentValidation
 
 
         }
-
-        internal object Validate(ValidationContext<Comment> context)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

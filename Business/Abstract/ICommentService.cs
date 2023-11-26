@@ -10,7 +10,7 @@ namespace Business.Abstract
 {
     public interface ICommentService
     {
-        IDataResult<List<Comment>> GetProductList();
+        IDataResult<List<Comment>> GetCommentList();
         IDataResult<Comment> GetById(int commentId);
         IResult Add(Comment comment);
         IResult Update(Comment comment);

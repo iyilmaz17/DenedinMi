@@ -14,7 +14,7 @@ namespace Business.Concrete
     public class ImageManager : IImageService
     {
         private readonly IImageDal _imageDal;
-        ImageManager(IImageDal imageDal)
+        public ImageManager(IImageDal imageDal)
         {
             _imageDal = imageDal;
         }
