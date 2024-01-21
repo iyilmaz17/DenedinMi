@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,13 @@ namespace Business.Constants
         public static string UserUpdate = "Kullanıcı güncellendi";
         public static string UserDelete = "Kullanıcı silindi";
         public static string UserAdd = "Kullanıcı eklendi";
+
+        public static string UserRegistered = "Kullanıcı Oluşturuldu";
+        public static User UserNotFound { get; internal set; }
+        public static User PasswordError { get; internal set; }
+        public static string SuccessfulLogin { get; internal set; }
+        public static string UserAlreadyExists { get; internal set; }
+        public static string AccessTokenCreated { get; internal set; }
 
         // User
 

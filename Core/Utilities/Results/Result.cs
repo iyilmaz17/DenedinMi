@@ -8,15 +8,13 @@ namespace Core.Utilities.Results
 {
     public class Result : IResult
     {
-
-        public Result(bool isSuccess, string message) : this(isSuccess)
+        public Result(bool isSuccess,string message):this(isSuccess)
         {
             Message = message;
         }
-
         public Result(bool isSuccess)
         {
-            isSuccess = IsSuccess;
+            IsSuccess = isSuccess;
         }
 
         public bool IsSuccess { get; }

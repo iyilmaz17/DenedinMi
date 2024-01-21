@@ -17,9 +17,9 @@ namespace Entities.Concrete
         public DateTime? UpdatedDate { get; set; }
 
         public int UserId { get; set; }
-        public User Users { get; set; }
+        //public User Users { get; set; }
 
         public int ProductId { get; set; }
-        public Product Products { get; set; }
+        //public Product Products { get; set; }
     }
 }

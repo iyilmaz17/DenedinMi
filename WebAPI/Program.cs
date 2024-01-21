@@ -3,8 +3,9 @@ using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
 using Business.DependencyResolvers.Autofac;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
-
+using Core.Extensions;
 using DataAccess.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,25 +18,12 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
     });
 builder.Services.AddControllers();
 
-builder.Services.AddSingleton<IProductDal, EfProductDal>();
-builder.Services.AddSingleton<IProductService, ProductManager>();
-
-builder.Services.AddSingleton<ICategoryDal, EfCategoryDal>();
-builder.Services.AddSingleton<ICategoryService, CategoryManager>();
-
-builder.Services.AddSingleton<IUserService, UserManager>();
-builder.Services.AddSingleton<IUserDal, EfUserDal>();
-
-builder.Services.AddSingleton<ICommentDal, EfCommentDal>();
-builder.Services.AddSingleton<ICommentService, CommentManager>();
-
-builder.Services.AddSingleton<IImageDal, EfImageDal>();
-builder.Services.AddSingleton<IImageService, ImageManager>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddCors();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -47,7 +35,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.ConfigureCustomExceptionMiddleware();
 
+app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

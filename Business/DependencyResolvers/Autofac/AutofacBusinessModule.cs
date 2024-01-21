@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using System;
@@ -33,6 +34,34 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<ImageManager>().As<IImageService>();
             builder.RegisterType<EfImageDal>().As<IImageDal>();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
+                .EnableInterfaceInterceptors(new ProxyGenerationOptions()
+                {
+                    Selector = new AspectInterceptorSelector()
+                }).SingleInstance();
+
         }
     }
 }
+//builder.Services.AddSingleton<IProductDal, EfProductDal>();
+//builder.Services.AddSingleton<IProductService, ProductManager>();
+
+//builder.Services.AddSingleton<ICategoryDal, EfCategoryDal>();
+//builder.Services.AddSingleton<ICategoryService, CategoryManager>();
+
+//builder.Services.AddSingleton<IUserService, UserManager>();
+//builder.Services.AddSingleton<IUserDal, EfUserDal>();
+
+//builder.Services.AddSingleton<ICommentDal, EfCommentDal>();
+//builder.Services.AddSingleton<ICommentService, CommentManager>();
+
+//builder.Services.AddSingleton<IImageDal, EfImageDal>();
+//builder.Services.AddSingleton<IImageService, ImageManager>();
+
+//builder.Services.AddSingleton<IAuthService, AuthManager>();
+//builder.Services.AddSingleton<ITokenHelper, JwtHelper>();

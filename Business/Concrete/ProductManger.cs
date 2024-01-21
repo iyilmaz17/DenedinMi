@@ -4,6 +4,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTO;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -47,7 +48,15 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetProductList()
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), "okey");
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll().OrderByDescending(product => product.AddedDate).ToList())    ;
+        }
+        public IDataResult<List<HomeDto>> GetHomeList()
+        {
+            return new SuccessDataResult<List<HomeDto>>(_productDal.GetAllHomeProduct());
+        }
+        public IDataResult<List<HomeDto>> GetByCateggoryIdProductList(int categoryId)
+        {
+            return new SuccessDataResult<List<HomeDto>>(_productDal.GetByCategoryId(categoryId));
         }
 
         public IResult Update(Product product)

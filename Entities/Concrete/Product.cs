@@ -13,6 +13,7 @@ namespace Entities.Concrete
         public float MinPrice { get; set; }
         public float MaxPrice { get; set; }
         public string Description { get; set; }
+        public DateTime AddedDate { get; set; }
         public int CategoryId { get; set; }
         //public Category Category { get; set; }
 

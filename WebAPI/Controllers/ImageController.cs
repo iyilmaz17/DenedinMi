@@ -24,6 +24,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet(("getbyid"))]
+        public IActionResult GetById(int productId)
+        {
+            var result = _imageService.GetById(productId);
+            if (result.Data != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpPost("add")]
         public IActionResult Add(Image image)
         {

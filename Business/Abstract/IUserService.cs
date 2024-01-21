@@ -12,6 +12,8 @@ namespace Business.Abstract
     {
         IDataResult<List<User>> GetProductList();
         IDataResult<User> GetById(int userId);
+        IDataResult<User> GetByMail(string email);
+        IDataResult<List<OperationClaim>> GetClaims(User user);
         IResult Add(User user);
         IResult Update(User user);
         IResult Delete(User user);

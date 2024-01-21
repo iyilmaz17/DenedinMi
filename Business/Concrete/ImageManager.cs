@@ -32,7 +32,7 @@ namespace Business.Concrete
 
         public IDataResult<Image> GetById(int imageId)
         {
-            return new SuccessDataResult<Image>(_imageDal.Get(i=> i.Id == imageId));
+            return new SuccessDataResult<Image>(_imageDal.Get(i=> i.ProductId == imageId));
         }
 
         public IDataResult<List<Image>> GetProductList()

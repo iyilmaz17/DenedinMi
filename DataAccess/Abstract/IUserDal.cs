@@ -11,4 +11,5 @@ namespace DataAccess.Abstract;
 // Ayrıca her nesnesinin kendisine özel işlemleri olabileceği için ayrıca birer interfacesi bulunmaktadır.
 public interface IUserDal : IRepository<User>
 {
+    List<OperationClaim> GetClaims(User user);
 }

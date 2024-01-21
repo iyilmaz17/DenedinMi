@@ -5,6 +5,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete;
+using Entities.DTO;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -24,12 +25,14 @@ namespace Business.Concrete
         }
         public IResult Add(Comment comment)
         {
-            var context = new ValidationContext<Comment>(comment);
-            CommentValidator commentValidator = new CommentValidator();
-            var result  = commentValidator.Validate(context);
-            if (!result.IsValid) { 
-            _commentDal.Add(comment);
-            }
+            //var context = new ValidationContext<Comment>(comment);
+            //CommentValidator commentValidator = new CommentValidator();
+            //var result = commentValidator.Validate(context);
+            //if (!result.IsValid)
+            //{
+            comment.CreatedDate = DateTime.Now;
+                _commentDal.Add(comment);
+            //}
             return new SuccessResult(Messages.CommentAdd);
         }
 
@@ -40,10 +43,30 @@ namespace Business.Concrete
 
         }
 
+        public IDataResult<List<Comment>> GetAllByProductId(int id)
+        {
+            return new SuccessDataResult<List<Comment>>(_commentDal.GetAll(c=>c.ProductId ==id));
+        }
+
         public IDataResult<Comment> GetById(int commentId)
         {
-                return new SuccessDataResult<Comment>(_commentDal.Get(c => c.Id == commentId));
-           
+            return new SuccessDataResult<Comment>(_commentDal.Get(c => c.Id == commentId));
+
+        }
+
+        public IDataResult<Comment> GetByProductId(int productId)
+        {
+            return new SuccessDataResult<Comment>(_commentDal.Get(p => p.ProductId == productId));
+        }
+
+        public IDataResult<List<CommentAVG>> GetCommentAvg()
+        {
+            return new SuccessDataResult<List<CommentAVG>>(_commentDal.GetCommentDetail());
+        }
+
+        public IDataResult<CommentAVG> GetCommentDetailByProductId(int productId)
+        {
+            return new SuccessDataResult<CommentAVG>(_commentDal.GetCommentDetailByProductId(productId));
         }
 
         public IDataResult<List<Comment>> GetCommentList()
