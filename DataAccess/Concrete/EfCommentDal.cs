@@ -42,6 +42,25 @@ public class EfCommentDal : EfEntityRepositoryBase<Comment, DenedinMiContext>, I
             return query;
         }
     }
+    public CommentAVG GetCommentDetailByProductIdWithMaxUserCount()
+    {
+        using (DenedinMiContext context = new DenedinMiContext())
+        {
+            var query = context.Comments
+                .GroupBy(c => c.ProductId)
+                .Select(g => new CommentAVG
+                {
+                    ProductId = g.Key,
+                    AvgStar = (int)Math.Round(g.Sum(c => c.StarCount) / (double)g.Count()),
+                    UserCount = g.Count()
+                })
+                .OrderByDescending(g => g.UserCount)
+                .FirstOrDefault();
+
+            return query;
+        }
+    }
+
 
 
 }

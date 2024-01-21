@@ -69,6 +69,11 @@ namespace Business.Concrete
             return new SuccessDataResult<CommentAVG>(_commentDal.GetCommentDetailByProductId(productId));
         }
 
+        public IDataResult<CommentAVG> GetCommentDetailByProductIdWithMaxUserCount()
+        {
+            return new SuccessDataResult<CommentAVG>(_commentDal.GetCommentDetailByProductIdWithMaxUserCount());
+        }
+
         public IDataResult<List<Comment>> GetCommentList()
         {
             return new SuccessDataResult<List<Comment>>(_commentDal.GetAll());

@@ -20,7 +20,8 @@ namespace Business.Abstract
         IResult Update(Comment comment);
         IResult Delete(Comment comment);
         IDataResult<List<CommentAVG>> GetCommentAvg();
-        IDataResult<CommentAVG> GetCommentDetailByProductId(int productId); 
+        IDataResult<CommentAVG> GetCommentDetailByProductId(int productId);
+        IDataResult<CommentAVG> GetCommentDetailByProductIdWithMaxUserCount();
     }
     
 }

@@ -13,5 +13,6 @@ public interface ICommentDal : IRepository<Comment>
 {
     List<CommentAVG> GetCommentDetail();
     CommentAVG GetCommentDetailByProductId(int productId);
+    CommentAVG GetCommentDetailByProductIdWithMaxUserCount();
 
 }

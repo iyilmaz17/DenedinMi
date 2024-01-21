@@ -78,5 +78,15 @@ namespace WebAPI.Controllers
             }
             return Ok(result);
         }
+        [HttpGet("GetCommentDetailByProductIdWithMaxUserCount")]
+        public IActionResult GetCommentDetailByProductIdWithMaxUserCount()
+        {
+            var result = _commentService.GetCommentDetailByProductIdWithMaxUserCount();
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return Ok(result);
+        }
     }
 }
